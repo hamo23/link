@@ -20,10 +20,14 @@
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
             text-align: center;
+            transition: transform 0.5s;
+        }
+        .container:hover {
+            transform: scale(1.02);
         }
         .profile-img {
             width: 150px;
@@ -38,22 +42,40 @@
             color: #E1306C;
             margin: 15px 0;
             font-size: 32px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
         }
         .name {
             font-size: 28px;
             margin: 10px 0;
             font-weight: bold;
         }
+        .date-time {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .date-time i {
+            margin-left: 5px;
+        }
         .social-links {
             list-style-type: none;
             padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
             margin: 20px 0;
         }
         .social-links li {
-            margin: 15px 0;
+            flex: 1 1 120px;
+            margin: 10px;
         }
         .social-links a {
             text-decoration: none;
@@ -63,7 +85,7 @@
             padding: 15px;
             color: #fff;
             border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
             font-size: 18px;
             position: relative;
             overflow: hidden;
@@ -72,29 +94,33 @@
         .social-links a:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+            background-color: rgba(255, 255, 255, 0.1);
         }
         .line { background-color: #00C300; }
         .paypal { background-color: #003087; }
         .whatsapp { background-color: #25D366; }
         .instagram { background-color: #E1306C; }
         .snapchat { background-color: #FFFC00; color: black; }
+        .twitter { background-color: #1DA1F2; }
+        .tiktok { background-color: #69C9D0; }
         .tellonym {
             background-color: #1e1e1e;
-            color: #ffcc00; /* لون النص */
+            color: #ffcc00;
             font-weight: bold;
-            border: 2px solid #ffcc00; /* إطار بنفس لون النص */
+            border: 2px solid #ffcc00;
             transition: background-color 0.3s, color 0.3s, transform 0.3s;
         }
         .tellonym:hover {
-            background-color: #ffcc00; /* لون الخلفية عند المرور */
-            color: #1e1e1e; /* لون النص عند المرور */
-            transform: scale(1.05); /* تأثير تكبير */
+            background-color: #ffcc00;
+            color: #1e1e1e;
+            transform: scale(1.05);
         }
         .about-me {
             margin-top: 20px;
             background: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
         .about-me h2 {
             color: #E1306C;
@@ -116,6 +142,10 @@
     <div class="container">
         <img src="https://e.top4top.io/p_32008t2po0.jpg" alt="Profile Image" class="profile-img">
         <div class="name">Mr.king</div>
+        <div class="date-time" id="date-time">
+            <i class="fas fa-clock"></i>
+            <span></span>
+        </div>
         <h1>Follow me on</h1>
         <ul class="social-links">
             <li><a href="http://line.me/ti/p/~black-69." class="line" target="_blank"><i class="fab fa-line"></i> Line</a></li>
@@ -123,6 +153,8 @@
             <li><a href="https://wa.me/+380968411361" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
             <li><a href="https://www.instagram.com/77.7yp" class="instagram" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
             <li><a href="https://www.snapchat.com/add/poor3h" class="snapchat" target="_blank"><i class="fab fa-snapchat"></i> Snapchat</a></li>
+            <li><a href="https://x.com/resa6544" class="twitter" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+            <li><a href="https://www.tiktok.com/@m55p7" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
             <li><a href="https://tellonym.me/5.55p" class="tellonym" target="_blank"><i class="fas fa-comment"></i> Tellonym</a></li>
         </ul>
         
@@ -135,5 +167,22 @@
             © 2024 Mr.king. جميع الحقوق محفوظة.
         </footer>
     </div>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true 
+            };
+            document.getElementById('date-time').querySelector('span').innerText = now.toLocaleString('en-US', options);
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); 
+    </script>
 </body>
 </html>
